@@ -1,5 +1,7 @@
 import pandas as pd
+# import modin.pandas as pd
 import numpy as np
+from memory_profiler import profile
 from year_2017.plan_1 import config
 import util
 import os
@@ -8,7 +10,7 @@ import os
 n_rows = None
 
 
-# 137s
+# 69s
 @util.timer
 def concat_feature():
     """ join ad,user,position,app_category """
@@ -43,21 +45,29 @@ def concat_feature():
          "hometown": np.int16, "residence": np.int16,
          "sitesetID": np.int8, "positionType": np.int8, "appCategory": np.int16
          })
-    res.to_parquet(os.path.join(config.path_data_dir, "train.parquet"))
+    res.to_parquet(os.path.join(config.path_plan1_data_dir, "concat_feature_train.parquet"))
 
 
+# 85s
 @util.timer
 def add_time_feature():
-    df = pd.read_parquet(os.path.join(config.path_data_dir, "train.parquet"))
+    df = pd.read_parquet(os.path.join(config.path_plan1_data_dir, "concat_feature_train.parquet"))
     df["clickTime_day"] = df["clickTime"].apply(lambda x: str(x)[:2])
     df["clickTime_hour"] = df["clickTime"].apply(lambda x: str(x)[2:4])
     df["clickTime_min"] = df["clickTime"].apply(lambda x: str(x)[4:6])
     df["clickTime_second"] = df["clickTime"].apply(lambda x: str(x)[6:])
-    df = df[: 10000000, :]
     print(df.head())
-    df.to_parquet(os.path.join(config.path_data_dir, "train.parquet"))
+    df.to_parquet(os.path.join(config.path_plan1_data_dir, "add_time_feature_train.parquet"))
+
+
+def add_cross_feature():
+    df = pd.read_parquet(os.path.join(config.path_plan1_data_dir, "add_time_feature_train.parquet"))
+    df["advertiserID_camgaignID"] = df["advertiserID"] * df["camgaignID"]
+    df["positionID_positionType"] = df["positionID"] / 1000 + df["positionType"]
+
 
 
 if __name__ == "__main__":
     # concat_feature()
+    # add_time_feature()
     add_time_feature()

@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 
 pd.set_option('display.max_columns', 100000)
@@ -8,13 +9,15 @@ pd.set_option('display.max_colwidth', 500)
 pd.set_option('display.precision', 2)
 
 
-path_ad = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\ad.csv"
-path_app_categories = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\app_categories.csv"
-path_position = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\position.csv"
-path_test = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\test.csv"
-path_train = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\train.csv"
-path_user = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\user.csv"
-path_user_app_actions = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\user_app_actions.csv"
-path_user_installedapps = r"C:\Users\xiexiaoxuan\Desktop\腾讯广告算法\2017腾讯赛数据集\final\user_installedapps.csv"
+base_dir = "/Users/xiexiaoxuan/PycharmProjects/algo_tencent/year_2017"
 
-path_data_dir = r"C:\Users\xiexiaoxuan\PycharmProjects\algo_tencent\year_2017\plan_1\data"
+path_ad = os.path.join(base_dir, "data", "ad.csv")
+path_app_categories = os.path.join(base_dir, "data", "app_categories.csv")
+path_position = os.path.join(base_dir, "data", "position.csv")
+path_test = os.path.join(base_dir, "data", "test.csv")
+path_train = os.path.join(base_dir, "data", "train.csv")
+path_user = os.path.join(base_dir, "data", "user.csv")
+path_user_app_actions = os.path.join(base_dir, "data", "user_app_actions.csv")
+path_user_installedapps = os.path.join(base_dir, "data", "user_installedapps.csv")
+
+path_plan1_data_dir = os.path.join(base_dir, "plan_1", "data")
