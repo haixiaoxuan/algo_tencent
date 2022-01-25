@@ -14,9 +14,9 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
 
 
-rawpath = 'C:\\final\\'
-temppath = 'C:\\final\\temp\\'
-iapath = 'C:\\final\\temp\\installedactions\\'
+rawpath = '/Users/xiexiaoxuan/PycharmProjects/algo_tencent/year_2017/data/'
+temppath = '/Users/xiexiaoxuan/PycharmProjects/algo_tencent/year_2017/plan_2/data/temp/'
+iapath = '/Users/xiexiaoxuan/PycharmProjects/algo_tencent/year_2017/plan_2/data/temp/installedactions/'
 
 
 def logloss(act, preds):
